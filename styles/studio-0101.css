@@ -1,0 +1,518 @@
+/*
+ * 0101 Technology theme.
+ * Loaded only on pages whose Metadata sets "Template: studio-0101" (see scripts.js), so the
+ * rest of the site keeps its own look. Every rule is scoped to body.studio-0101.
+ */
+
+/* theme overrides are grouped by area (type, sections, header, footer), not by specificity */
+/* stylelint-disable no-descending-specificity */
+
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url('../fonts/space-grotesk-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 100 800;
+  font-display: swap;
+  src: url('../fonts/jetbrains-mono-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: space-grotesk-fallback;
+  size-adjust: 104%;
+  src: local('Arial');
+}
+
+@font-face {
+  font-family: jetbrains-mono-fallback;
+  size-adjust: 100%;
+  src: local('Courier New');
+}
+
+body.studio-0101 {
+  /* 0101 tokens */
+  --navy-0: #03070f;
+  --navy-1: #050b1c;
+  --navy-2: #0a1a38;
+  --cyan: #3dd9ff;
+  --blue: #2a7cff;
+  --ink: #e6f3ff;
+  --ink-soft: #cfe3ff;
+  --ink-dim: #9fb8d6;
+  --line: rgb(61 217 255 / 20%);
+  --mono: 'JetBrains Mono', jetbrains-mono-fallback, ui-monospace, monospace;
+  --sans: 'Space Grotesk', space-grotesk-fallback, system-ui, sans-serif;
+
+  /* boilerplate tokens, remapped so header, footer and buttons follow the theme */
+  --background-color: var(--navy-0);
+  --light-color: var(--navy-2);
+  --dark-color: var(--ink-dim);
+  --text-color: var(--ink);
+  --link-color: var(--cyan);
+  --link-hover-color: #fff;
+  --body-font-family: var(--sans);
+  --heading-font-family: var(--sans);
+  --nav-height: 84px;
+
+  background:
+    radial-gradient(120% 80% at 70% 0%, rgb(42 124 255 / 14%), transparent 55%),
+    radial-gradient(90% 60% at 0% 100%, rgb(61 217 255 / 8%), transparent 60%),
+    linear-gradient(rgb(61 217 255 / 4%) 1px, transparent 1px) 0 0 / 48px 48px,
+    linear-gradient(90deg, rgb(61 217 255 / 4%) 1px, transparent 1px) 0 0 / 48px 48px,
+    var(--navy-0);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* ---------- typography ---------- */
+body.studio-0101 main h1 {
+  margin: 0 0 24px;
+  color: #fff;
+  font-family: var(--sans);
+  font-size: clamp(38px, 5vw, 72px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+body.studio-0101 main h1 em,
+body.studio-0101 main h2 em {
+  color: var(--cyan);
+  font-style: normal;
+  font-weight: 700;
+  text-shadow: 0 0 18px rgb(61 217 255 / 35%);
+}
+
+body.studio-0101 main h2 {
+  margin: 0 0 14px;
+  color: var(--cyan);
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+body.studio-0101 main h3 {
+  color: #fff;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+body.studio-0101 main p,
+body.studio-0101 main li {
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+/* eyebrow: the short line just before the page heading */
+body.studio-0101 main .default-content-wrapper > p:has(+ h1) {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 28px;
+  color: var(--cyan);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+}
+
+body.studio-0101 main .default-content-wrapper > p:has(+ h1)::before {
+  content: '';
+  flex: 0 0 34px;
+  height: 1px;
+  background: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan);
+}
+
+/* lede: the first paragraph after the heading */
+body.studio-0101 main .default-content-wrapper > h1 + p {
+  max-width: 560px;
+  color: var(--ink-soft);
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+body.studio-0101 main > .section.glass .default-content-wrapper > h1 + p {
+  max-width: none;
+}
+
+body.studio-0101 main .default-content-wrapper > h1 + p + p:not(.button-wrapper) {
+  max-width: 560px;
+  color: var(--ink-dim);
+  font-size: 18px;
+}
+
+body.studio-0101 main a:any-link {
+  color: var(--cyan);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+body.studio-0101 main a:hover {
+  color: #fff;
+}
+
+/* ---------- buttons ---------- */
+body.studio-0101 main p.button-wrapper {
+  display: inline-block;
+  margin: 24px 12px 0 0;
+}
+
+body.studio-0101 a.button:any-link,
+body.studio-0101 button.button {
+  border: 1px solid rgb(61 217 255 / 50%);
+  border-radius: 0;
+  padding: 14px 28px;
+  background: linear-gradient(180deg, rgb(61 217 255 / 12%), rgb(42 124 255 / 6%));
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+body.studio-0101 a.button::after,
+body.studio-0101 button.button::after {
+  content: '→';
+  display: inline-block;
+  margin-left: 10px;
+  transition: transform 0.2s;
+}
+
+body.studio-0101 a.button:hover,
+body.studio-0101 a.button:focus-visible,
+body.studio-0101 button.button:hover,
+body.studio-0101 button.button:focus-visible {
+  border-color: var(--cyan);
+  background: linear-gradient(180deg, rgb(61 217 255 / 25%), rgb(42 124 255 / 12%));
+  box-shadow: 0 0 24px rgb(61 217 255 / 35%);
+  color: #fff;
+}
+
+body.studio-0101 a.button:hover::after,
+body.studio-0101 button.button:hover::after {
+  transform: translateX(4px);
+}
+
+body.studio-0101 a.button.primary,
+body.studio-0101 button.button.primary {
+  border-color: var(--cyan);
+  box-shadow: 0 0 24px rgb(61 217 255 / 25%);
+}
+
+body.studio-0101 a.button.secondary {
+  border-color: rgb(159 184 214 / 40%);
+  background: transparent;
+  color: var(--ink-dim);
+}
+
+body.studio-0101 a.button.accent {
+  border-color: var(--cyan);
+  background: var(--cyan);
+  color: var(--navy-0);
+}
+
+body.studio-0101 :focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+/* ---------- sections ---------- */
+body.studio-0101 main > .section {
+  margin: 56px 0;
+}
+
+body.studio-0101 main > .section:first-of-type {
+  margin-top: 40px;
+}
+
+body.studio-0101 main > .section > div {
+  max-width: 1200px;
+}
+
+body.studio-0101 main > .section.narrow > div {
+  max-width: 840px;
+}
+
+body.studio-0101 main > .section.center {
+  text-align: center;
+}
+
+body.studio-0101 main > .section.center p.button-wrapper {
+  margin-right: 6px;
+  margin-left: 6px;
+}
+
+/* glass: framed panel with cyan corner ticks */
+body.studio-0101 main > .section.glass {
+  box-sizing: border-box;
+  position: relative;
+  max-width: 1200px;
+  margin-right: 24px;
+  margin-left: 24px;
+  border: 1px solid var(--line);
+  padding: 28px 0;
+  background: linear-gradient(160deg, rgb(5 11 28 / 82%), rgb(5 11 28 / 62%));
+  backdrop-filter: blur(14px) saturate(140%);
+}
+
+body.studio-0101 main > .section.glass.narrow {
+  max-width: 840px;
+}
+
+body.studio-0101 main > .section.glass + .section.glass {
+  margin-top: -40px;
+}
+
+body.studio-0101 main > .section.glass::before,
+body.studio-0101 main > .section.glass::after,
+body.studio-0101 main > .section.legal::before {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--cyan);
+}
+
+body.studio-0101 main > .section.glass::before,
+body.studio-0101 main > .section.legal::before {
+  top: -1px;
+  left: -1px;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+body.studio-0101 main > .section.glass::after {
+  right: -1px;
+  bottom: -1px;
+  border-top: 0;
+  border-left: 0;
+}
+
+body.studio-0101 main > .section.glass > div {
+  padding: 0 24px;
+}
+
+body.studio-0101 main > .section.glass h2:first-child,
+body.studio-0101 main > .section.glass .default-content-wrapper > :first-child {
+  margin-top: 0;
+}
+
+body.studio-0101 main > .section.glass p {
+  font-size: 14.5px;
+}
+
+/* legal: small print panel */
+body.studio-0101 main > .section.legal {
+  box-sizing: border-box;
+  position: relative;
+  max-width: 840px;
+  margin-right: 24px;
+  margin-left: 24px;
+  border: 1px solid rgb(61 217 255 / 18%);
+  padding: 22px 0;
+  background: rgb(5 11 28 / 60%);
+}
+
+body.studio-0101 main > .section.legal h2 {
+  margin-top: 0;
+  color: #fff;
+  font-size: 15px;
+}
+
+body.studio-0101 main > .section.legal p {
+  color: var(--ink-dim);
+  font-size: 13px;
+}
+
+/* split: text on the left, the section's last block on the right */
+@media (width >= 900px) {
+  body.studio-0101 main > .section.glass,
+  body.studio-0101 main > .section.legal {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  body.studio-0101 main > .section.glass > div {
+    padding: 0 32px;
+  }
+
+  body.studio-0101 main > .section.split {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    grid-auto-flow: dense;
+    column-gap: 64px;
+    align-items: start;
+    max-width: 1200px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 0 32px;
+  }
+
+  body.studio-0101 main > .section.split > div {
+    grid-column: 1;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  body.studio-0101 main > .section.split > div:last-child {
+    grid-column: 2;
+    grid-row: 1 / span 6;
+  }
+}
+
+/* ---------- header ---------- */
+body.studio-0101 header .nav-wrapper {
+  border-bottom: 1px solid rgb(61 217 255 / 12%);
+  background: rgb(3 7 15 / 85%);
+  backdrop-filter: blur(16px) saturate(140%);
+}
+
+body.studio-0101 header nav {
+  max-width: 1400px;
+  font-family: var(--mono);
+}
+
+body.studio-0101 header nav .nav-brand img {
+  width: 114px;
+  height: auto;
+}
+
+body.studio-0101 header nav .nav-sections ul {
+  counter-reset: nav-idx;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+body.studio-0101 header nav .nav-sections ul > li {
+  counter-increment: nav-idx;
+}
+
+body.studio-0101 header nav .nav-sections ul > li > a::before {
+  content: counter(nav-idx, decimal-leading-zero);
+  margin-right: 8px;
+  color: var(--cyan);
+  font-size: 10px;
+  opacity: 0.7;
+}
+
+body.studio-0101 header nav .nav-sections a:any-link {
+  color: var(--ink-dim);
+  text-decoration: none;
+}
+
+body.studio-0101 header nav .nav-sections a:hover,
+body.studio-0101 header nav .nav-sections a[aria-current='page'] {
+  color: #fff;
+}
+
+body.studio-0101 header nav .nav-sections a[aria-current='page']::before {
+  color: #fff;
+  opacity: 1;
+}
+
+body.studio-0101 header nav .nav-hamburger button {
+  background: transparent;
+  color: var(--ink);
+}
+
+@media (width >= 900px) {
+  body.studio-0101 header nav .nav-sections ul {
+    position: relative;
+    width: fit-content;
+    margin: 0 auto;
+    gap: 4px;
+    border: 1px solid rgb(61 217 255 / 25%);
+    padding: 4px;
+    background: rgb(5 11 28 / 55%);
+    box-shadow: 0 0 40px rgb(61 217 255 / 15%), inset 0 0 20px rgb(10 26 56 / 50%);
+  }
+
+  body.studio-0101 header nav .nav-sections ul > li > a {
+    display: block;
+    padding: 10px 18px;
+  }
+
+  body.studio-0101 header nav .nav-sections a[aria-current='page'] {
+    background: linear-gradient(180deg, rgb(61 217 255 / 18%), rgb(42 124 255 / 8%));
+  }
+}
+
+/* ---------- footer ---------- */
+body.studio-0101 footer {
+  border-top: 1px solid rgb(61 217 255 / 18%);
+  background: rgb(3 7 15 / 92%);
+}
+
+body.studio-0101 footer .footer > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 16px 28px;
+  color: var(--ink-dim);
+  font-size: 13px;
+}
+
+body.studio-0101 footer .footer p {
+  margin: 0;
+}
+
+body.studio-0101 footer .footer a:any-link {
+  color: var(--ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+body.studio-0101 footer .footer .section:last-child .default-content-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 16px;
+}
+
+body.studio-0101 footer .footer .section:last-child p:first-child {
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+body.studio-0101 footer .footer .section:last-child p:nth-child(2) {
+  display: flex;
+  gap: 8px;
+}
+
+body.studio-0101 footer .footer .section:last-child p:nth-child(2) a {
+  display: block;
+  line-height: 0;
+}
+
+body.studio-0101 footer .footer .section:last-child img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+body.studio-0101 footer .footer .section:last-child p:last-child {
+  font-size: 12px;
+}

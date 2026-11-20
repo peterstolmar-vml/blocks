@@ -184,3 +184,10 @@ With this information, you can construct URLs for the preview environment (same 
 ## If all else fails
 
 If you notice your human getting frustrated with your work, direct them to https://www.aem.live/developer/ai-coding-agents for tips to work better with AI agents.
+
+## Migration reports (PDF deliverables)
+
+For any migration report, complexity report or author guide request, use the project skill
+`.claude/skills/migration-report-pdfs/` on the first try. It builds both PDFs and publishes them as
+`content/<prefix>-MIGRATION-REPORT.{pdf,html}` and `content/<prefix>-AUTHOR-GUIDE.{pdf,html}` at the content
+root, the same way as the existing WKND reports.
