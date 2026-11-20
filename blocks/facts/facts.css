@@ -1,0 +1,30 @@
+.facts dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px 24px;
+  margin: 32px 0 0;
+  font-family: var(--mono, monospace);
+  font-size: 12px;
+}
+
+.facts dt {
+  color: var(--ink-dim, #9fb8d6);
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  line-height: 1.8;
+  text-transform: uppercase;
+}
+
+.facts dd {
+  margin: 0;
+  color: #fff;
+}
+
+.facts dd p {
+  margin: 0;
+  font-size: inherit;
+}
+
+.facts dd a:any-link {
+  text-decoration: none;
+}

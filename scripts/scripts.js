@@ -10,6 +10,9 @@ import {
   loadSections,
   loadCSS,
   buildBlock,
+  readBlockConfig,
+  toCamelCase,
+  toClassName,
 } from './aem.js';
 
 if (window.trustedTypes && window.trustedTypes.createPolicy) {
@@ -143,6 +146,28 @@ function decorateButtons(main) {
 }
 
 /**
+ * Applies Section Metadata tables to their sections: "style" becomes section classes,
+ * any other setting becomes a data attribute. Runs before blocks are decorated so the
+ * table is never loaded as a block.
+ * @param {Element} main The main element
+ */
+function decorateSectionMetadata(main) {
+  main.querySelectorAll(':scope > .section > div > .section-metadata').forEach((sectionMeta) => {
+    const section = sectionMeta.closest('.section');
+    const meta = readBlockConfig(sectionMeta);
+    Object.keys(meta).forEach((key) => {
+      if (key === 'style') {
+        String(meta.style).split(',').map((s) => toClassName(s.trim())).filter(Boolean)
+          .forEach((style) => section.classList.add(style));
+      } else {
+        section.dataset[toCamelCase(key)] = meta[key];
+      }
+    });
+    sectionMeta.parentElement.remove();
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -151,6 +176,7 @@ export function decorateMain(main) {
   decorateIcons(main);
   buildAutoBlocks(main);
   decorateSections(main);
+  decorateSectionMetadata(main);
   decorateBlocks(main);
   decorateButtons(main);
 }
@@ -162,6 +188,10 @@ export function decorateMain(main) {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
+  // site themes that only apply to some pages (Metadata "Template"), loaded before first paint
+  if (document.body.classList.contains('studio-0101')) {
+    await loadCSS(`${window.hlx.codeBasePath}/styles/studio-0101.css`);
+  }
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);

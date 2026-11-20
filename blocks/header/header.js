@@ -117,6 +117,14 @@ export default async function decorate(block) {
 
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
+    // mark the link to the current page
+    // "/x/index" and "/x/" are the same page; the local preview serves pages under /content
+    const norm = (p) => p.replace(/^\/content(?=\/)/, '').replace(/\/index$|\/$/, '') || '/';
+    const here = norm(window.location.pathname);
+    navSections.querySelectorAll('a[href]').forEach((a) => {
+      const there = norm(new URL(a.href, window.location).pathname);
+      if (there === here) a.setAttribute('aria-current', 'page');
+    });
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
       const subList = navSection.querySelector(':scope > ul');
       if (!subList) return;

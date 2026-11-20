@@ -1,0 +1,165 @@
+.agent-mesh .agent-mesh-hud {
+  position: relative;
+  margin: 0;
+  border: 1px solid rgb(61 217 255 / 20%);
+  padding: 26px;
+  background: linear-gradient(160deg, rgb(10 26 56 / 55%), rgb(5 11 28 / 30%));
+  backdrop-filter: blur(10px);
+  font-family: var(--mono, monospace);
+}
+
+.agent-mesh .agent-mesh-hud::before,
+.agent-mesh .agent-mesh-hud::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--cyan, #3dd9ff);
+}
+
+.agent-mesh .agent-mesh-hud::before {
+  top: -1px;
+  left: -1px;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.agent-mesh .agent-mesh-hud::after {
+  right: -1px;
+  bottom: -1px;
+  border-top: 0;
+  border-left: 0;
+}
+
+.agent-mesh .agent-mesh-title {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+  color: var(--cyan, #3dd9ff);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.agent-mesh .agent-mesh-tag {
+  color: var(--ink-dim, #9fb8d6);
+}
+
+.agent-mesh .agent-mesh-stage {
+  border: 1px dashed rgb(61 217 255 / 15%);
+  aspect-ratio: 400 / 360;
+}
+
+.agent-mesh svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.agent-mesh svg .edges path {
+  fill: none;
+  stroke: #1e456b;
+  stroke-width: 1;
+}
+
+.agent-mesh svg .core {
+  fill: #03070f;
+  stroke: var(--cyan, #3dd9ff);
+  stroke-width: 1.5;
+}
+
+.agent-mesh svg .core.hot {
+  stroke: #fff;
+  stroke-width: 2;
+  filter: drop-shadow(0 0 6px #3dd9ff);
+}
+
+.agent-mesh svg text {
+  fill: #cfe3ff;
+  font-family: var(--mono, monospace);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-anchor: middle;
+}
+
+.agent-mesh svg text.sub {
+  fill: #2a7cff;
+  font-size: 8px;
+}
+
+.agent-mesh svg .packet {
+  fill: var(--cyan, #3dd9ff);
+  filter: drop-shadow(0 0 3px #3dd9ff);
+}
+
+.agent-mesh .agent-mesh-log {
+  min-height: 90px;
+  margin: 16px 0 0;
+  padding: 8px 0;
+  background: rgb(5 11 28 / 50%);
+  list-style: none;
+  font-size: 10.5px;
+  line-height: 1.6;
+  color: #cfe3ff;
+  overflow: hidden;
+}
+
+.agent-mesh .agent-mesh-log li {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+.agent-mesh .agent-mesh-log .t {
+  color: var(--cyan, #3dd9ff);
+}
+
+.agent-mesh .agent-mesh-log .fn {
+  color: #ffd479;
+}
+
+.agent-mesh .agent-mesh-log .ok {
+  float: right;
+  color: #5fe3a1;
+}
+
+.agent-mesh .agent-mesh-metrics {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px 24px;
+  margin: 20px 0 0;
+  font-size: 11px;
+}
+
+.agent-mesh .agent-mesh-metrics dt {
+  color: var(--ink-dim, #9fb8d6);
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  line-height: 1.9;
+  text-transform: uppercase;
+}
+
+.agent-mesh .agent-mesh-metrics dd {
+  margin: 0;
+  color: #fff;
+}
+
+.agent-mesh .agent-mesh-metrics dd:first-of-type {
+  color: var(--cyan, #3dd9ff);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .agent-mesh svg .packets {
+    display: none;
+  }
+}
+
+@media (width < 900px) {
+  .agent-mesh {
+    margin-top: 40px;
+  }
+}
