@@ -1,0 +1,10 @@
+{
+  "sites": {
+    "blocks": {
+      "previewOrg": "peterstolmar-vml",
+      "previewSite": "blocks",
+      "contentHostUrl": "https://content.da.live/peterstolmar-vml/blocks/",
+      "libraryUrl": "https://main--blocks--peterstolmar-vml.aem.page/tools/sidekick/library/blocks.json"
+    }
+  }
+}
